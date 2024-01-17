@@ -84,7 +84,7 @@ int PutMdData(PID_CMD_t pid, uint16_t rmid, const uint8_t *pData, uint16_t lengt
 
     serial_comm_snd_buff[len++] = CalCheckSum(serial_comm_snd_buff, len);
 
-#if 0
+#if 1
     {
         int i;
 
@@ -245,7 +245,7 @@ int AnalyzeReceivedData(uint8_t byArray[], uint8_t byBufNum) //Analyze the commu
     for(j = 0; j < byBufNum; j++)
     {
         data = byArray[j];
-#if 0
+#if 1
         printf("%02x(%d) ", data, data);
 #endif
         switch(rcv_step) {

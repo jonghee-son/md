@@ -440,8 +440,8 @@ int main(int argc, char** argv)
     nh.getParam("md_robot_node/slow_start", robotParamData.nSlowstart);
     nh.getParam("md_robot_node/slow_down", robotParamData.nSlowdown);
 
-    //robotParamData.nIDPC = MID_PC;         // Platform mini-PC ID
-    robotParamData.nIDPC = MID_MDUI;        // MDUI ID
+    robotParamData.nIDPC = MID_PC;         // Platform mini-PC ID
+    //robotParamData.nIDPC = MID_MDUI;        // MDUI ID
     robotParamData.nIDMDUI = MID_MDUI;       // MDUI ID
     robotParamData.nIDMDT = MID_MDT;        // MD750T, MD400T, MD200T ID
 
