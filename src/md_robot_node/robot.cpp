@@ -22,6 +22,9 @@
 extern md::md_robot_msg1 md_robot_message1;
 extern md::md_robot_msg2 md_robot_message2;
 
+extern std_msgs::Int32 right_ticks;
+extern std_msgs::Int32 left_ticks;
+
 // m/sec --> RPM
 int16_t * RobotSpeedToRPMSpeed(double linear, double angular)
 {
@@ -121,4 +124,39 @@ void MakeMDRobotMessage2(PID_ROBOT_MONITOR_t *pData)
 #endif    
 }
 
+void CalTicks(PID_PNT_MAIN_DATA_t *pData)
+{
+    int32_t ticks_left;
+    int32_t ticks_right;
+
+    int32_t encoder_minimum = -2147483648;
+    int32_t encoder_maximum = 2147483647;
+
+    //std_msgs::Int32 right_wheel_tick_count;
+    //ros::Publisher rightPub("right_ticks", &right_wheel_tick_count);
+
+    //std_msgs::Int32 left_wheel_tick_count;
+    //ros::Publisher leftPub("left_ticks", &left_wheel_tick_count);
+
+    //ros::NodeHandle nh1;
+
+    //nh1.initNode();
+    //nh1.advertise(rightPub);
+    //nh1.advertise(leftPub);
+
+    ticks_left = pData->mtr_pos_id1;
+    ticks_right = pData->mtr_pos_id2;
+
+    right_ticks.data = ticks_right;
+    left_ticks.data = ticks_left;
+
+    //rightPub.publish( &ticks_right );
+    //leftPub.publish( &ticks_left );
+    //nh1.spinOnce();
+
+#if 0
+    ROS_INFO("\r\n");
+    ROS_INFO("mtr ticks: %d : %d", ticks_left, ticks_right);
+#endif
+}
 

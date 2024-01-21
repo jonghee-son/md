@@ -10,6 +10,11 @@
 #include "md/md_robot_msg2.h"
 #include <ros/ros.h>
 
+ros::Publisher rightPub;
+ros::Publisher leftPub;
+std_msgs::Int32 right_ticks;
+std_msgs::Int32 left_ticks;
+
 ros::Publisher md_robot_message1_pub;
 md::md_robot_msg1 md_robot_message1;
 
@@ -420,6 +425,9 @@ int main(int argc, char** argv)
     ros::Subscriber reset_alarm_sub = nh.subscribe("reset_alarm", 10, resetAlarmCallBack);              //Subscriber declaration.
     int16_t *pGoalRPMSpeed;
 
+    rightPub = nh.advertise<std_msgs::Int32>("right_ticks", 10);
+    leftPub = nh.advertise<std_msgs::Int32>("left_ticks", 10);
+
     reset_pos_flag = false;
     reset_alarm_flag = false;
 
@@ -593,3 +601,15 @@ void PubMDRobotMessage2(void)
 {
     md_robot_message2_pub.publish(md_robot_message2);
 }
+
+void PublishTicks(void)
+{
+    rightPub.publish(right_ticks);
+    leftPub.publish(left_ticks);
+
+//if 0
+    //ROS_INFO("\r\n");
+    //ROS_INFO("mtr ticks: %d : %d", ticks_left, ticks_right);
+//endif
+}
+

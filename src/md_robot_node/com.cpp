@@ -30,7 +30,7 @@ int InitSerialComm(void)
 {
     try
     {
-        ser.setPort("/dev/ttyUSB0");
+        ser.setPort("/dev/md");
         ser.setBaudrate(robotParamData.nBaudrate);
         serial::Timeout to = serial::Timeout::simpleTimeout(1667); //1667 when baud is 57600, 0.6ms
         ser.setTimeout(to);                                        //2857 when baud is 115200, 0.35ms
@@ -84,7 +84,7 @@ int PutMdData(PID_CMD_t pid, uint16_t rmid, const uint8_t *pData, uint16_t lengt
 
     serial_comm_snd_buff[len++] = CalCheckSum(serial_comm_snd_buff, len);
 
-#if 1
+#if 0
     {
         int i;
 
@@ -245,7 +245,7 @@ int AnalyzeReceivedData(uint8_t byArray[], uint8_t byBufNum) //Analyze the commu
     for(j = 0; j < byBufNum; j++)
     {
         data = byArray[j];
-#if 1
+#if 0
         printf("%02x(%d) ", data, data);
 #endif
         switch(rcv_step) {
@@ -319,7 +319,7 @@ int AnalyzeReceivedData(uint8_t byArray[], uint8_t byBufNum) //Analyze the commu
                 if(++byDataNum >= MAX_DATA_SIZE)
                 {
                     rcv_step = 0;
-                    ROS_INFO("error.ser: %s, %d", __FILE__, __LINE__);
+                    ROS_INFO("DataNum error.ser: %s, %d", __FILE__, __LINE__);
                     break;
                 }
 
@@ -337,7 +337,7 @@ int AnalyzeReceivedData(uint8_t byArray[], uint8_t byBufNum) //Analyze the commu
                     MdReceiveProc();                                 //save the identified serial data to defined variable
                 }
                 else {
-                    ROS_INFO("error.ser: %s, %d", __FILE__, __LINE__);
+                    ROS_INFO("ChkSum error.ser: %s, %d", __FILE__, __LINE__);
                 }
 
                 byPacketNum = 0;
