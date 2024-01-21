@@ -25,6 +25,9 @@ extern void PubRobotPose(void);
 extern void PubMDRobotMessage2(void);
 extern void PubMDRobotMessage1(void);
 
+extern int CalTicks(PID_PNT_MAIN_DATA_t *pData);
+extern void PublishTicks(void);
+
 //Initialize serial communication in ROS
 int InitSerialComm(void)
 {
@@ -143,6 +146,9 @@ int MdReceiveProc(void) //save the identified serial data to defined variable ac
                 MakeMDRobotMessage1(&curr_pid_pnt_main_data);
 
                 PubMDRobotMessage1();
+
+		CalTicks(&curr_pid_pnt_main_data);
+		PublishTicks();
             }
             break;
         }
