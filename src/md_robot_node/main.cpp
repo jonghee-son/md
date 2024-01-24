@@ -469,8 +469,8 @@ int main(int argc, char** argv)
     md_robot_message1_pub = nh.advertise<md::md_robot_msg1>("md_robot_message1", 10);
     md_robot_message2_pub = nh.advertise<md::md_robot_msg2>("md_robot_message2", 10);
 
-    //robotParamData.nBaudrate = 57600;               // fixed
-    robotParamData.nBaudrate = 19200;
+    robotParamData.nBaudrate = 57600;               // fixed
+    //robotParamData.nBaudrate = 19200;
 
     ROS_INFO("PC ID          : %d", robotParamData.nIDPC);
     ROS_INFO("MDUI ID        : %d", robotParamData.nIDMDUI);
