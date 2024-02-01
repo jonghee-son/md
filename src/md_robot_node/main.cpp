@@ -607,9 +607,9 @@ void PublishTicks(void)
     rightPub.publish(right_ticks);
     leftPub.publish(left_ticks);
 
-//if 0
-    //ROS_INFO("\r\n");
-    //ROS_INFO("mtr ticks: %d : %d", ticks_left, ticks_right);
-//endif
+#if 0
+    ROS_INFO("\r\n");
+    ROS_INFO("mtr ticks: %d : %d", ticks_left, ticks_right);
+#endif
 }
 
